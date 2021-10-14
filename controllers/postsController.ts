@@ -11,7 +11,9 @@ export const addPost = (req: Request, res: Response) => {
 
   PostModel.find(post).then((e) => {
     if (e.length != 0) {
-      res.json('Posts cannot have the same data!');
+      res.sendStatus(400).json({
+        error: 'Posts cannot have the same data'
+      });
     } else {
       const newPost = new PostModel(post);
       newPost
