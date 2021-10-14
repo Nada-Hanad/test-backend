@@ -8,10 +8,10 @@ export const getPosts = (req: Request, res: Response) => {
 };
 export const addPost = (req: Request, res: Response) => {
   const post = req.body;
-  const photo = req.file;
-  PostModel.find({ date: post.date, time: post.time }).then((e) => {
+
+  PostModel.find(post).then((e) => {
     if (e.length != 0) {
-      res.json('Posts cannot have the same date and time!, MFs.');
+      res.json('Posts cannot have the same data!');
     } else {
       const newPost = new PostModel(post);
       newPost
