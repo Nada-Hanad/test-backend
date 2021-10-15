@@ -27,5 +27,9 @@ export const addPost = (req: Request, res: Response) => {
 export const deletePost = (req: Request, res: Response) => {
   PostModel.findByIdAndDelete(req.params.id)
     .then((data) => res.json({ message: 'Deleted Successfully' }))
-    .catch((err) => res.json(err));
+    .catch((err) =>
+      res.sendStatus(400).json({
+        error: 'Unable to delete!'
+      })
+    );
 };
