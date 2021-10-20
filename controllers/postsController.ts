@@ -6,6 +6,12 @@ export const getPosts = (req: Request, res: Response) => {
     .then((data) => res.json(data))
     .catch((e) => res.json(e));
 };
+export const getPostByID = (req: Request, res: Response) => {
+  const { id } = req.params;
+  PostModel.findById(id)
+    .then((user) => res.json(user))
+    .catch((err) => res.status(500).json(err));
+};
 export const addPost = (req: Request, res: Response) => {
   const post = req.body;
 
